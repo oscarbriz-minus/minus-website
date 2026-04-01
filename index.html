@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MINUS — Security for AI-built products</title>
+  <meta name="description" content="MINUS finds every vulnerability in your AI-built product and tells you exactly how to fix it. From €299."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet"/>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    :root{--red:#E03131;--black:#080808;--white:#FAFAFA;--border:#E8E8E8;--muted:#888}
+    html{scroll-behavior:smooth}
+    body{font-family:'DM Sans',sans-serif;background:var(--white);color:var(--black);overflow-x:hidden}
+    nav{display:flex;justify-content:space-between;align-items:center;padding:1.2rem 2.5rem;border-bottom:1px solid var(--border);background:rgba(250,250,250,0.95);backdrop-filter:blur(12px);position:sticky;top:0;z-index:100}
+    .logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.2rem;letter-spacing:-0.03em;display:flex;align-items:center;color:var(--black);text-decoration:none}
+    .logo-dash{color:var(--red);margin-right:2px}
+    .nav-right{display:flex;align-items:center;gap:1.5rem}
+    .nav-link{font-size:13px;color:var(--muted);text-decoration:none;font-weight:500;transition:color 0.2s}
+    .nav-link:hover{color:var(--black)}
+    .nav-cta{font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;padding:7px 18px;background:var(--black);color:#FFF;border:none;border-radius:8px;cursor:pointer;transition:background 0.2s}
+    .nav-cta:hover{background:#333}
+    .hero{min-height:90vh;display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--border)}
+    .hero-left{padding:5rem 4rem 4rem 3rem;display:flex;flex-direction:column;justify-content:space-between;border-right:1px solid var(--border)}
+    .hero-right{padding:5rem 3rem 4rem 4rem;display:flex;flex-direction:column;justify-content:flex-end;background:#FAFAFA}
+    .hero-eyebrow{font-size:11px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:3rem}
+    .hero-h1{font-family:'Syne',sans-serif;font-size:clamp(2.8rem,4.5vw,4.8rem);font-weight:800;line-height:1.02;letter-spacing:-0.04em;color:var(--black)}
+    .hero-h1 .red{color:var(--red)}
+    .hero-bottom{margin-top:auto;padding-top:3rem}
+    .hero-sub{font-size:1rem;color:#555;line-height:1.78;margin-bottom:2.5rem;max-width:420px}
+    .hero-form{display:flex;gap:8px;flex-wrap:wrap}
+    .hero-input{font-family:'DM Sans',sans-serif;font-size:0.88rem;padding:0.82rem 1.2rem;border:1.5px solid var(--border);border-radius:9px;background:#FFF;color:var(--black);width:240px;outline:none;transition:border-color 0.2s}
+    .hero-input:focus{border-color:var(--red)}
+    .hero-input::placeholder{color:#BBB}
+    .hero-btn{font-family:'DM Sans',sans-serif;font-size:0.88rem;font-weight:500;padding:0.82rem 1.6rem;background:var(--black);color:#FFF;border:none;border-radius:9px;cursor:pointer;transition:background 0.2s;white-space:nowrap}
+    .hero-btn:hover{background:#222}
+    .hero-note{font-size:11px;color:#BBB;margin-top:0.8rem}
+    .hero-big-num{font-family:'Syne',sans-serif;font-size:clamp(4rem,8vw,7rem);font-weight:800;color:var(--red);line-height:1;letter-spacing:-0.04em}
+    .hero-stat-label{font-size:0.9rem;color:#777;margin-top:0.6rem;line-height:1.55;max-width:280px}
+    .hero-divider{width:40px;height:2px;background:var(--red);margin:2.5rem 0}
+    .hero-quote{font-size:1rem;color:#444;line-height:1.72;font-style:italic;max-width:320px}
+    .hero-quote cite{display:block;font-style:normal;font-size:12px;color:var(--muted);margin-top:0.8rem}
+    .ticker-wrap{border-bottom:1px solid var(--border);padding:0.9rem 0;overflow:hidden;background:#FFF}
+    .ticker-inner{display:flex;white-space:nowrap;animation:ticker 30s linear infinite}
+    .ticker-inner:hover{animation-play-state:paused}
+    @keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+    .tick-item{font-size:12px;font-weight:500;color:var(--muted);padding:0 2.5rem;border-right:1px solid var(--border);letter-spacing:0.04em;text-transform:uppercase;flex-shrink:0}
+    .tick-item.red{color:var(--red)}
+    .split{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--border)}
+    .split-text{padding:5rem 4rem;display:flex;flex-direction:column;justify-content:center;border-right:1px solid var(--border)}
+    .split-visual{padding:4rem 3.5rem;display:flex;align-items:center;justify-content:center;background:#FAFAFA}
+    .split-tag{font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:1.2rem}
+    .split-h{font-family:'Syne',sans-serif;font-size:clamp(1.8rem,3vw,2.6rem);font-weight:800;letter-spacing:-0.03em;line-height:1.1;color:var(--black);margin-bottom:1.2rem}
+    .split-h em{font-style:normal;color:var(--red)}
+    .split-p{font-size:0.95rem;color:#666;line-height:1.75;max-width:420px}
+    .vulns{border-bottom:1px solid var(--border)}
+    .vulns-header{padding:3.5rem 3rem 2.5rem;display:flex;justify-content:space-between;align-items:flex-end;border-bottom:1px solid var(--border)}
+    .vulns-h{font-family:'Syne',sans-serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:800;letter-spacing:-0.03em;color:var(--black);line-height:1.1}
+    .vulns-sub{font-size:0.88rem;color:var(--muted);max-width:280px;text-align:right;line-height:1.6}
+    .vulns-grid{display:grid;grid-template-columns:repeat(4,1fr)}
+    .vuln-card{padding:2.5rem 2rem;border-right:1px solid var(--border);transition:background 0.3s}
+    .vuln-card:last-child{border-right:none}
+    .vuln-card:hover{background:#FFF8F8}
+    .vuln-sev{font-size:10px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:3px 10px;border-radius:100px;display:inline-block;margin-bottom:1.2rem}
+    .sev-crit{background:#FFF0F0;color:var(--red);border:1px solid #FCCFCF}
+    .sev-high{background:#FFF8EE;color:#CC7700;border:1px solid #FFE0B0}
+    .vuln-card h3{font-family:'Syne',sans-serif;font-size:0.97rem;font-weight:700;color:var(--black);margin-bottom:0.6rem;line-height:1.3}
+    .vuln-card p{font-size:0.82rem;color:var(--muted);line-height:1.65}
+    .report-sec{background:var(--black);padding:5.5rem 3rem}
+    .report-wrap{max-width:800px;margin:0 auto}
+    .report-top{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:3rem}
+    .sec-tag-light{font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#444;margin-bottom:0.8rem}
+    .report-h{font-family:'Syne',sans-serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:800;letter-spacing:-0.03em;color:#FFF;line-height:1.1}
+    .report-desc{font-size:0.88rem;color:#444;max-width:240px;text-align:right;line-height:1.65}
+    .r-window{border:1px solid #1E1E1E;border-radius:12px;overflow:hidden}
+    .r-bar{background:#111;padding:0.85rem 1.4rem;display:flex;align-items:center;gap:6px;border-bottom:1px solid #1E1E1E}
+    .dot{width:10px;height:10px;border-radius:50%}
+    .dot.r{background:#FF5F57}.dot.y{background:#FEBC2E}.dot.g{background:#28C840}
+    .r-url{font-size:11px;color:#333;margin-left:8px;font-family:monospace}
+    .r-body{padding:2rem;background:#0D0D0D}
+    .r-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1.8rem;padding-bottom:1.5rem;border-bottom:1px solid #181818}
+    .r-t{font-family:'Syne',sans-serif;font-size:0.95rem;font-weight:700;color:#EEE}
+    .r-m{font-size:11px;color:#333;font-family:monospace;margin-top:0.3rem}
+    .r-score{font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;color:var(--red);text-align:right;line-height:1}
+    .r-score span{display:block;font-family:'DM Sans',sans-serif;font-size:10px;color:#333;font-weight:400;text-transform:uppercase;letter-spacing:0.06em;margin-top:3px}
+    .r-row{padding:1.2rem 0;border-bottom:1px solid #141414}
+    .r-row:last-child{border-bottom:none}
+    .r-row-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:0.5rem;gap:12px}
+    .r-name{font-size:0.87rem;font-weight:500;color:#DDD}
+    .rb{font-size:10px;padding:3px 9px;border-radius:100px;font-weight:500;white-space:nowrap}
+    .rb.c{background:#2A0808;color:#FF7070;border:1px solid #3A1010}
+    .rb.h{background:#1A1400;color:#FFB347;border:1px solid #2A2200}
+    .r-desc{font-size:0.81rem;color:#555;line-height:1.65;margin-bottom:0.8rem}
+    .r-self{font-size:0.76rem;color:#5CBA5C;background:#0A1A0A;padding:8px 12px;border-radius:6px;border-left:2px solid #1A3A1A;font-family:monospace}
+    .r-fix-btn{display:flex;align-items:center;justify-content:space-between;gap:12px;background:#180A00;border:1px solid #3A2000;border-radius:8px;padding:10px 14px;cursor:pointer;transition:all 0.2s}
+    .r-fix-btn:hover{background:#221000;border-color:#5A3000}
+    .r-fix-text{font-size:0.79rem;color:#CC8833;line-height:1.4}
+    .r-fix-cta{font-size:11px;font-weight:600;background:var(--red);color:#FFF;padding:6px 13px;border-radius:6px;white-space:nowrap;flex-shrink:0}
+    .fix-ok{font-size:0.8rem;color:#5CBA5C;display:flex;align-items:center;gap:8px;padding:4px 0}
+    .reviews{border-bottom:1px solid var(--border)}
+    .reviews-header{padding:4rem 3rem 3rem;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:flex-end}
+    .reviews-h{font-family:'Syne',sans-serif;font-size:clamp(1.8rem,3vw,2.6rem);font-weight:800;letter-spacing:-0.03em;color:var(--black);line-height:1.1}
+    .reviews-note{font-size:0.85rem;color:var(--muted);max-width:220px;text-align:right;line-height:1.6}
+    .reviews-grid{display:grid;grid-template-columns:repeat(3,1fr)}
+    .rev{padding:2.5rem;border-right:1px solid var(--border);transition:background 0.3s}
+    .rev:last-child{border-right:none}
+    .rev:hover{background:#FAFAFA}
+    .rev-resolved{font-size:10px;font-weight:600;color:#5CBA5C;background:#EDF8ED;padding:3px 10px;border-radius:100px;display:inline-block;margin-bottom:0.8rem;letter-spacing:0.03em}
+    .rev-tag{font-size:10px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--red);margin-bottom:0.9rem}
+    .rev-text{font-size:0.9rem;color:#444;line-height:1.75;font-style:italic;margin-bottom:1.5rem}
+    .rev-author{display:flex;align-items:center;gap:10px}
+    .rev-av{width:33px;height:33px;border-radius:50%;background:#EEE;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:700;font-size:12px;color:#999;flex-shrink:0}
+    .rev-name{font-size:13px;font-weight:500;color:var(--black)}
+    .rev-role{font-size:11px;color:var(--muted)}
+    .pricing{padding:5.5rem 3rem;border-bottom:1px solid var(--border)}
+    .pricing-top{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:4rem}
+    .pricing-h{font-family:'Syne',sans-serif;font-size:clamp(1.8rem,3vw,2.6rem);font-weight:800;letter-spacing:-0.03em;color:var(--black);line-height:1.1}
+    .pricing-note-right{font-size:0.85rem;color:var(--muted);max-width:220px;text-align:right;line-height:1.6}
+    .price-grid{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--border);border-radius:14px;overflow:hidden}
+    .pc{padding:2.2rem 2rem;border-right:1px solid var(--border);transition:background 0.3s;position:relative}
+    .pc:last-child{border-right:none}
+    .pc.feat{background:#FFF8F8}
+    .pc:hover{background:#F8F8F8}
+    .pc.feat:hover{background:#FFF2F2}
+    .feat-tag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;background:var(--red);color:#FFF;padding:3px 12px;border-radius:100px;margin-bottom:1rem}
+    .p-tier{font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:0.6rem}
+    .p-price{font-family:'Syne',sans-serif;font-size:2.3rem;font-weight:800;color:var(--black);line-height:1;margin-bottom:0.25rem}
+    .p-period{font-size:0.79rem;color:var(--muted);margin-bottom:1.7rem;line-height:1.45}
+    .p-list{list-style:none;margin-bottom:1.9rem}
+    .p-list li{font-size:0.83rem;color:#555;padding:4px 0;display:flex;align-items:flex-start;gap:7px;line-height:1.45}
+    .p-list li::before{content:'—';color:var(--red);font-weight:700;flex-shrink:0}
+    .pbtn{width:100%;font-family:'DM Sans',sans-serif;font-size:0.87rem;font-weight:500;padding:0.78rem;border-radius:9px;cursor:pointer;transition:all 0.2s}
+    .pbtn.out{border:1.5px solid #DDD;background:transparent;color:var(--black)}
+    .pbtn.out:hover{border-color:var(--black);background:var(--black);color:#FFF}
+    .pbtn.red{border:none;background:var(--red);color:#FFF}
+    .pbtn.red:hover{background:#C02020}
+    .p-caveat{font-size:10px;color:#CCC;margin-top:0.6rem;text-align:center;line-height:1.4}
+    .pricing-foot{font-size:12px;color:#BBB;margin-top:1.8rem;text-align:center}
+    footer{padding:2rem 2.5rem;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border)}
+    .f-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1rem;letter-spacing:-0.03em;display:flex;align-items:center;color:var(--black);text-decoration:none}
+    .f-dash{color:var(--red);margin-right:2px}
+    .f-note{font-size:12px;color:#CCC}
+    @media(max-width:960px){
+      .hero{grid-template-columns:1fr;min-height:auto}
+      .hero-right{display:none}
+      .hero-left{border-right:none;padding:4rem 2rem}
+      .split{grid-template-columns:1fr}
+      .split-text{border-right:none;border-bottom:1px solid var(--border)}
+      .vulns-grid{grid-template-columns:1fr 1fr}
+      .vuln-card:nth-child(2){border-right:none}
+      .vuln-card:nth-child(3){border-top:1px solid var(--border)}
+      .vuln-card:nth-child(4){border-top:1px solid var(--border);border-right:none}
+      .reviews-grid{grid-template-columns:1fr}
+      .rev{border-right:none;border-bottom:1px solid var(--border)}
+      .price-grid{grid-template-columns:1fr}
+      .pc{border-right:none;border-bottom:1px solid var(--border)}
+      .pc:last-child{border-bottom:none}
+      .vulns-header,.reviews-header,.pricing-top,.report-top{flex-direction:column;align-items:flex-start;gap:1rem}
+      .vulns-sub,.reviews-note,.pricing-note-right,.report-desc{text-align:left;max-width:100%}
+    }
+    @media(max-width:600px){
+      nav{padding:1rem 1.2rem}
+      .hero-left{padding:3rem 1.5rem}
+      .hero-input{width:100%}
+      .hero-form{flex-direction:column}
+      .vulns-grid{grid-template-columns:1fr}
+      .vuln-card{border-right:none;border-bottom:1px solid var(--border)}
+      footer{flex-direction:column;gap:0.8rem;text-align:center}
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="logo"><span class="logo-dash">—</span>minus</a>
+  <div class="nav-right">
+    <a href="#how" class="nav-link">How it works</a>
+    <a href="#pricing" class="nav-link">Pricing</a>
+    <button class="nav-cta" onclick="document.getElementById('heroEmail').focus()">Get early access</button>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-left">
+    <div>
+      <div class="hero-eyebrow">Security for AI-native companies</div>
+      <h1 class="hero-h1">Your app is live.<br>Is it <span class="red">actually</span><br>safe to be?</h1>
+    </div>
+    <div class="hero-bottom">
+      <p class="hero-sub">You built something real with Claude Code, Cursor, or Lovable. Most founders ship and hope for the best. MINUS tells you what's exposed, what it means, and how to close it — before someone else finds it first.</p>
+      <div class="hero-form">
+        <input class="hero-input" type="email" placeholder="your@email.com" id="heroEmail"/>
+        <button class="hero-btn" onclick="joinWL()">Request early access</button>
+      </div>
+      <p class="hero-note" id="heroNote">Free scan included for everyone on the waitlist at launch</p>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div style="margin-bottom:4rem">
+      <div class="hero-big-num">84%</div>
+      <p class="hero-stat-label">of AI-built apps contain at least one critical security vulnerability on their first public deployment.</p>
+    </div>
+    <div class="hero-divider"></div>
+    <p class="hero-quote">"I had been live for four months before MINUS found my OpenAI key sitting in plain view. Anyone could have used it."<cite>— Early access user, Amsterdam</cite></p>
+  </div>
+</section>
+
+<div class="ticker-wrap">
+  <div class="ticker-inner">
+    <span class="tick-item red">— API key exposure</span><span class="tick-item">Unauthenticated endpoints</span><span class="tick-item red">— Prompt injection</span><span class="tick-item">Unsigned payment webhooks</span><span class="tick-item red">— Insecure dependencies</span><span class="tick-item">Missing rate limiting</span><span class="tick-item red">— Data exposure via LLM</span><span class="tick-item">Broken access control</span><span class="tick-item red">— API key exposure</span><span class="tick-item">Unauthenticated endpoints</span><span class="tick-item red">— Prompt injection</span><span class="tick-item">Unsigned payment webhooks</span><span class="tick-item red">— Insecure dependencies</span><span class="tick-item">Missing rate limiting</span><span class="tick-item red">— Data exposure via LLM</span><span class="tick-item">Broken access control</span>
+  </div>
+</div>
+
+<section class="split" id="how">
+  <div class="split-text">
+    <div class="split-tag">The context</div>
+    <h2 class="split-h">Built for the generation<br>that ships with <em>AI.</em></h2>
+    <p class="split-p">Security has always been an afterthought for indie builders — not because they don't care, but because the tools that exist were built for enterprise teams with dedicated engineers and five-figure budgets. MINUS was built specifically for founders who move fast with AI tools and need to know if their product is holding up.</p>
+  </div>
+  <div class="split-visual">
+    <div style="width:100%;max-width:340px">
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:1.4rem 0;border-bottom:1px solid var(--border)"><span style="font-size:13px;color:var(--muted)">Traditional security audit</span><span style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.3rem;color:#CCC">€15,000</span></div>
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:1.4rem 0;border-bottom:1px solid var(--border)"><span style="font-size:13px;color:var(--muted)">Average wait time</span><span style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.3rem;color:#CCC">6–8 weeks</span></div>
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:1.4rem 0;border-bottom:1px solid var(--border)"><span style="font-size:13px;color:var(--muted)">MINUS Report</span><span style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.3rem;color:var(--red)">€299</span></div>
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:1.4rem 0"><span style="font-size:13px;color:var(--muted)">Delivered in</span><span style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.3rem;color:var(--red)">24 hours</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="vulns">
+  <div class="vulns-header">
+    <h2 class="vulns-h">What's probably inside<br>your app right now</h2>
+    <p class="vulns-sub">The four most common critical vulnerabilities in AI-built products. MINUS checks for all of them.</p>
+  </div>
+  <div class="vulns-grid">
+    <div class="vuln-card"><span class="vuln-sev sev-crit">Critical</span><h3>Exposed API credentials</h3><p>Secret keys hardcoded into your codebase or committed to version history. One scan from a bad actor and your OpenAI or Stripe account is theirs.</p></div>
+    <div class="vuln-card"><span class="vuln-sev sev-crit">Critical</span><h3>Unauthenticated endpoints</h3><p>API routes that execute sensitive operations with no identity check. AI-generated backends skip authentication constantly. It rarely shows up until it does.</p></div>
+    <div class="vuln-card"><span class="vuln-sev sev-high">High</span><h3>Prompt injection</h3><p>User inputs that reach your AI model without sanitization. A crafted message can override your system prompt and make your product do things you never intended.</p></div>
+    <div class="vuln-card"><span class="vuln-sev sev-high">High</span><h3>Unsigned payment webhooks</h3><p>Payment events processed without verifying their origin. If Stripe sends a "payment succeeded" — so can anyone else. Your app cannot tell the difference.</p></div>
+  </div>
+</div>
+
+<section class="report-sec">
+  <div class="report-wrap">
+    <div class="report-top">
+      <div><div class="sec-tag-light">What you receive</div><h2 class="report-h">A MINUS report<br>looks like this</h2></div>
+      <p class="report-desc">Self-fix or let us handle it. Every finding has a clear path to resolution.</p>
+    </div>
+    <div class="r-window">
+      <div class="r-bar"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div><span class="r-url">minus — security report — myapp.io — april 2026</span></div>
+      <div class="r-body">
+        <div class="r-top">
+          <div><div class="r-t">Security Analysis — myapp.io</div><div class="r-m">scanned 2026-04-01 · 847 files · 23 endpoints · 4 AI surfaces</div></div>
+          <div><div class="r-score">34<span>Security score</span></div></div>
+        </div>
+        <div class="r-row">
+          <div class="r-row-top"><span class="r-name">OpenAI API key exposed in repository</span><span class="rb c">Critical</span></div>
+          <p class="r-desc">Your production key is hardcoded in <code style="font-size:10px;color:#555;background:#1A1A1A;padding:2px 5px;border-radius:3px">config/api.js</code> line 34 and visible in your commit history. Any actor with read access can use it at your expense or pull your customer data.</p>
+          <div class="r-self">→ Self-fix: migrate to .env · invalidate key · rotate immediately</div>
+        </div>
+        <div class="r-row">
+          <div class="r-row-top"><span class="r-name">Stripe webhook accepts unsigned payloads</span><span class="rb c">Critical</span></div>
+          <p class="r-desc">Your payment endpoint at <code style="font-size:10px;color:#555;background:#1A1A1A;padding:2px 5px;border-radius:3px">/api/webhook</code> processes all events without verifying their origin. A crafted request can simulate any payment event and your system will treat it as real.</p>
+          <div class="r-fix-btn" onclick="fixIt(this)"><span class="r-fix-text">→ Let MINUS implement this — signature verification + full test suite included in the Fix plan</span><span class="r-fix-cta">Fix this for me</span></div>
+        </div>
+        <div class="r-row">
+          <div class="r-row-top"><span class="r-name">Prompt injection surface on /api/chat</span><span class="rb h">High</span></div>
+          <p class="r-desc">User messages pass directly to your model context without sanitization. A structured input can override your system prompt and instruct your AI to return data or behave in ways you never intended.</p>
+          <div class="r-fix-btn" onclick="fixIt(this)"><span class="r-fix-text">→ Let MINUS implement this — input sanitization + prompt hardening included in the Fix plan</span><span class="r-fix-cta">Fix this for me</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="reviews">
+  <div class="reviews-header">
+    <h2 class="reviews-h">From founders who<br>found out early</h2>
+    <p class="reviews-note">Real vulnerabilities. Real resolutions. Before anything went wrong.</p>
+  </div>
+  <div class="reviews-grid">
+    <div class="rev"><div class="rev-resolved">✓ Resolved in 48h</div><div class="rev-tag">Exposed database credentials</div><p class="rev-text">"I had been shipping with my Supabase key visible for three months. MINUS caught it in the first scan and had a fix ready before I finished reading the report."</p><div class="rev-author"><div class="rev-av">JM</div><div><div class="rev-name">Julien M.</div><div class="rev-role">Founder, AI scheduling · Paris</div></div></div></div>
+    <div class="rev"><div class="rev-resolved">✓ Resolved in 24h</div><div class="rev-tag">Fake payment vulnerability</div><p class="rev-text">"Our Stripe webhook had no signature check. Anyone could have faked a payment. MINUS flagged it as critical and their team had the fix deployed the same afternoon."</p><div class="rev-author"><div class="rev-av">SR</div><div><div class="rev-name">Sofia R.</div><div class="rev-role">Solo builder, SaaS · Amsterdam</div></div></div></div>
+    <div class="rev"><div class="rev-resolved">✓ Resolved in 12h</div><div class="rev-tag">Prompt injection attack surface</div><p class="rev-text">"I didn't know prompt injection was even a real attack vector. MINUS showed me exactly where my app was exposed and closed it before I'd even told my co-founder."</p><div class="rev-author"><div class="rev-av">AK</div><div><div class="rev-name">Alex K.</div><div class="rev-role">Indie hacker, AI wrapper · Berlin</div></div></div></div>
+  </div>
+</section>
+
+<section class="pricing" id="pricing">
+  <div class="pricing-top">
+    <h2 class="pricing-h">Three ways<br>to work with us</h2>
+    <p class="pricing-note-right">Every plan includes a signed certificate valid for investor due diligence.</p>
+  </div>
+  <div class="price-grid">
+    <div class="pc"><div class="p-tier">Report</div><div class="p-price">€299</div><div class="p-period">one-time · delivered in 24 hours</div><ul class="p-list"><li>Full codebase and endpoint scan</li><li>Severity-ranked findings</li><li>Plain language explanations</li><li>Step-by-step fix guides</li><li>Investor-ready PDF certificate</li></ul><button class="pbtn out" onclick="joinWL()">Join the waitlist</button></div>
+    <div class="pc feat"><div class="feat-tag">Recommended</div><div class="p-tier">Fix</div><div class="p-price">€799</div><div class="p-period">one-time · we handle everything</div><ul class="p-list"><li>Full Report included</li><li>We implement every fix directly</li><li>Post-fix rescan and verification</li><li>Clean bill of health certificate</li><li>30-day support window</li></ul><button class="pbtn red" onclick="joinWL()">Join the waitlist</button></div>
+    <div class="pc"><div class="p-tier">Monitor</div><div class="p-price">€149</div><div class="p-period">per month · minimum 3-month commitment</div><ul class="p-list"><li>Weekly automated scans</li><li>Real-time breach alerts</li><li>Monthly security briefing</li><li>Security score dashboard</li><li>Priority fix support</li></ul><button class="pbtn out" onclick="joinWL()">Join the waitlist</button><p class="p-caveat">Requires a prior Report or Fix scan to activate.</p></div>
+  </div>
+  <p class="pricing-foot">All plans include a signed security certificate valid for investor due diligence and EU AI Act compliance documentation.</p>
+</section>
+
+<footer>
+  <a href="#" class="f-logo"><span class="f-dash">—</span>minus</a>
+  <p class="f-note">© 2026 MINUS · getminus.app · hello@getminus.app · Rotterdam, NL</p>
+</footer>
+
+<script>
+  function joinWL(){
+    const i=document.getElementById('heroEmail');
+    const n=document.getElementById('heroNote');
+    const v=i.value.trim();
+    if(!v||!v.includes('@')){i.style.borderColor='#E03131';i.placeholder='Enter a valid email';window.scrollTo({top:0,behavior:'smooth'});i.focus();return}
+    i.style.display='none';document.querySelector('.hero-btn').style.display='none';
+    n.textContent="✓ You're in. We'll reach out before launch with your complimentary first scan.";
+    n.style.color='#5CBA5C';n.style.fontSize='0.95rem';n.style.fontWeight='500';
+  }
+  function fixIt(el){
+    el.innerHTML='<div class="fix-ok"><span style="width:18px;height:18px;border-radius:50%;background:#0A2A0A;display:flex;align-items:center;justify-content:center;font-size:9px;color:#5CBA5C;flex-shrink:0">✓</span>Fix request received. Our team will contact you within 2 hours to schedule implementation.</div>';
+    el.style.cursor='default';el.style.background='#0A1A0A';el.style.borderColor='#1A3A1A';
+  }
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'})}});
+  });
+</script>
+</body>
+</html>
