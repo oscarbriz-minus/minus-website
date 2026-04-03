@@ -35,6 +35,7 @@
     .hero-input::placeholder{color:#BBB}
     .hero-btn{font-family:'DM Sans',sans-serif;font-size:0.88rem;font-weight:500;padding:0.82rem 1.6rem;background:var(--black);color:#FFF;border:none;border-radius:9px;cursor:pointer;transition:background 0.2s;white-space:nowrap}
     .hero-btn:hover{background:#222}
+    .hero-btn:disabled{background:#999;cursor:not-allowed}
     .hero-note{font-size:11px;color:#BBB;margin-top:0.8rem}
     .hero-big-num{font-family:'Syne',sans-serif;font-size:clamp(4rem,8vw,7rem);font-weight:800;color:var(--red);line-height:1;letter-spacing:-0.04em}
     .hero-stat-label{font-size:0.9rem;color:#777;margin-top:0.6rem;line-height:1.55;max-width:280px}
@@ -140,6 +141,9 @@
     footer{padding:2rem 2.5rem;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border)}
     .f-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1rem;letter-spacing:-0.03em;display:flex;align-items:center;color:var(--black);text-decoration:none}
     .f-dash{color:var(--red);margin-right:2px}
+    .f-links{display:flex;align-items:center;gap:1.5rem}
+    .f-link{font-size:12px;color:#CCC;text-decoration:none;transition:color 0.2s}
+    .f-link:hover{color:var(--muted)}
     .f-note{font-size:12px;color:#CCC}
     @media(max-width:960px){
       .hero{grid-template-columns:1fr;min-height:auto}
@@ -166,7 +170,8 @@
       .hero-form{flex-direction:column}
       .vulns-grid{grid-template-columns:1fr}
       .vuln-card{border-right:none;border-bottom:1px solid var(--border)}
-      footer{flex-direction:column;gap:0.8rem;text-align:center}
+      footer{flex-direction:column;gap:1rem;text-align:center}
+      .f-links{flex-direction:column;gap:0.5rem}
     }
   </style>
 </head>
@@ -177,7 +182,7 @@
   <div class="nav-right">
     <a href="#how" class="nav-link">How it works</a>
     <a href="#pricing" class="nav-link">Pricing</a>
-    <button class="nav-cta" onclick="document.getElementById('heroEmail').focus()">Get early access</button>
+    <button class="nav-cta" onclick="document.getElementById('heroEmail').focus();window.scrollTo({top:0,behavior:'smooth'})">Get early access</button>
   </div>
 </nav>
 
@@ -191,7 +196,7 @@
       <p class="hero-sub">You built something real with Claude Code, Cursor, or Lovable. Most founders ship and hope for the best. MINUS tells you what's exposed, what it means, and how to close it — before someone else finds it first.</p>
       <div class="hero-form">
         <input class="hero-input" type="email" placeholder="your@email.com" id="heroEmail"/>
-        <button class="hero-btn" onclick="joinWL()">Request early access</button>
+        <button class="hero-btn" id="heroBtn" onclick="joinWL()">Request early access</button>
       </div>
       <p class="hero-note" id="heroNote">Free scan included for everyone on the waitlist at launch</p>
     </div>
@@ -289,37 +294,88 @@
 <section class="pricing" id="pricing">
   <div class="pricing-top">
     <h2 class="pricing-h">Three ways<br>to work with us</h2>
-    <p class="pricing-note-right">Every plan includes a signed certificate valid for investor due diligence.</p>
+    <p class="pricing-note-right">Questions? Reach us at contact@getminus.app</p>
   </div>
   <div class="price-grid">
-    <div class="pc"><div class="p-tier">Report</div><div class="p-price">€299</div><div class="p-period">one-time · delivered in 24 hours</div><ul class="p-list"><li>Full codebase and endpoint scan</li><li>Severity-ranked findings</li><li>Plain language explanations</li><li>Step-by-step fix guides</li><li>Investor-ready PDF certificate</li></ul><button class="pbtn out" onclick="joinWL()">Join the waitlist</button></div>
-    <div class="pc feat"><div class="feat-tag">Recommended</div><div class="p-tier">Fix</div><div class="p-price">€799</div><div class="p-period">one-time · we handle everything</div><ul class="p-list"><li>Full Report included</li><li>We implement every fix directly</li><li>Post-fix rescan and verification</li><li>Clean bill of health certificate</li><li>30-day support window</li></ul><button class="pbtn red" onclick="joinWL()">Join the waitlist</button></div>
-    <div class="pc"><div class="p-tier">Monitor</div><div class="p-price">€149</div><div class="p-period">per month · minimum 3-month commitment</div><ul class="p-list"><li>Weekly automated scans</li><li>Real-time breach alerts</li><li>Monthly security briefing</li><li>Security score dashboard</li><li>Priority fix support</li></ul><button class="pbtn out" onclick="joinWL()">Join the waitlist</button><p class="p-caveat">Requires a prior Report or Fix scan to activate.</p></div>
+    <div class="pc"><div class="p-tier">Report</div><div class="p-price">€299</div><div class="p-period">one-time · delivered in 24 hours</div><ul class="p-list"><li>Full codebase and endpoint scan</li><li>Severity-ranked findings</li><li>Plain language explanations</li><li>Step-by-step fix guides</li><li>Detailed PDF report of all findings</li></ul><button class="pbtn out" onclick="scrollToForm()">Join the waitlist</button></div>
+    <div class="pc feat"><div class="feat-tag">Recommended</div><div class="p-tier">Fix</div><div class="p-price">€799</div><div class="p-period">one-time · we handle everything</div><ul class="p-list"><li>Full Report included</li><li>We implement every fix directly</li><li>Post-fix rescan and verification</li><li>Clean bill of health PDF</li><li>30-day support window</li></ul><button class="pbtn red" onclick="scrollToForm()">Join the waitlist</button></div>
+    <div class="pc"><div class="p-tier">Monitor</div><div class="p-price">€149</div><div class="p-period">per month · minimum 3-month commitment</div><ul class="p-list"><li>Weekly automated scans</li><li>Real-time breach alerts</li><li>Monthly security briefing</li><li>Security score dashboard</li><li>Priority fix support</li></ul><button class="pbtn out" onclick="scrollToForm()">Join the waitlist</button><p class="p-caveat">Requires a prior Report or Fix scan to activate.</p></div>
   </div>
-  <p class="pricing-foot">All plans include a signed security certificate valid for investor due diligence and EU AI Act compliance documentation.</p>
+  <p class="pricing-foot">MINUS provides security analysis as information only. Reports do not constitute a guarantee of security.</p>
 </section>
 
 <footer>
   <a href="#" class="f-logo"><span class="f-dash">—</span>minus</a>
-  <p class="f-note">© 2026 MINUS · getminus.app · hello@getminus.app · Rotterdam, NL</p>
+  <div class="f-links">
+    <a href="/terms" class="f-link">Terms of Service</a>
+    <a href="/privacy" class="f-link">Privacy Policy</a>
+    <a href="mailto:contact@getminus.app" class="f-link">contact@getminus.app</a>
+  </div>
+  <p class="f-note">© 2026 MINUS · Rotterdam, NL</p>
 </footer>
 
 <script>
-  function joinWL(){
-    const i=document.getElementById('heroEmail');
-    const n=document.getElementById('heroNote');
-    const v=i.value.trim();
-    if(!v||!v.includes('@')){i.style.borderColor='#E03131';i.placeholder='Enter a valid email';window.scrollTo({top:0,behavior:'smooth'});i.focus();return}
-    i.style.display='none';document.querySelector('.hero-btn').style.display='none';
-    n.textContent="✓ You're in. We'll reach out before launch with your complimentary first scan.";
-    n.style.color='#5CBA5C';n.style.fontSize='0.95rem';n.style.fontWeight='500';
+  function scrollToForm(){
+    window.scrollTo({top:0,behavior:'smooth'});
+    setTimeout(()=>document.getElementById('heroEmail').focus(),600);
   }
+
+  async function joinWL(){
+    const input = document.getElementById('heroEmail');
+    const btn = document.getElementById('heroBtn');
+    const note = document.getElementById('heroNote');
+    const email = input.value.trim();
+
+    if(!email || !email.includes('@')){
+      input.style.borderColor='#E03131';
+      input.placeholder='Enter a valid email';
+      input.focus();
+      return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = 'Sending...';
+
+    try {
+      const res = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({email})
+      });
+
+      if(res.ok){
+        input.style.display='none';
+        btn.style.display='none';
+        note.textContent="✓ You're in. We'll reach out before launch with your complimentary first scan.";
+        note.style.color='#5CBA5C';
+        note.style.fontSize='0.95rem';
+        note.style.fontWeight='500';
+      } else {
+        btn.disabled = false;
+        btn.textContent = 'Request early access';
+        note.textContent = 'Something went wrong. Try again or email contact@getminus.app';
+        note.style.color='#E03131';
+      }
+    } catch(err){
+      btn.disabled = false;
+      btn.textContent = 'Request early access';
+      note.textContent = 'Something went wrong. Try again or email contact@getminus.app';
+      note.style.color='#E03131';
+    }
+  }
+
   function fixIt(el){
     el.innerHTML='<div class="fix-ok"><span style="width:18px;height:18px;border-radius:50%;background:#0A2A0A;display:flex;align-items:center;justify-content:center;font-size:9px;color:#5CBA5C;flex-shrink:0">✓</span>Fix request received. Our team will contact you within 2 hours to schedule implementation.</div>';
-    el.style.cursor='default';el.style.background='#0A1A0A';el.style.borderColor='#1A3A1A';
+    el.style.cursor='default';
+    el.style.background='#0A1A0A';
+    el.style.borderColor='#1A3A1A';
   }
+
   document.querySelectorAll('a[href^="#"]').forEach(a=>{
-    a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'})}});
+    a.addEventListener('click',e=>{
+      const t=document.querySelector(a.getAttribute('href'));
+      if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'})}
+    });
   });
 </script>
 </body>
